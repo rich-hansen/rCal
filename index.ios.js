@@ -12,22 +12,34 @@ var {
   View,
 } = React;
 
+var Button = require('react-native-button');
+
 var rCal = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        <View style={styles.buttonContainer}>
+          <Button
+              style={[styles.button, styles.blue]}
+              onPress={this._handlePickup}>
+            new Pickup
+          </Button>
+          <Button
+              style={[styles.button, styles.green]}
+              onPress={this._handleReminder}>
+            new Reminder
+          </Button>
+        </View>
       </View>
     );
+  },
+
+  _handlePickup: function () {
+    console.log('I want to create a new pickup');
+  },
+
+  _handleReminder: function () {
+    console.log('I want to create a new reminder');
   }
 });
 
@@ -48,6 +60,28 @@ var styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    marginTop: 20
+  },
+  button: {
+    borderWidth: 1,
+    height: 40,
+    width: 130,
+    paddingTop: 8,
+    margin: 10,
+    color: 'white',
+    borderRadius: 10
+  },
+  blue: {
+    borderColor: 'blue',
+    backgroundColor: 'blue'
+  },
+  green: {
+    borderColor: 'green',
+    backgroundColor: 'green'
+  }
 });
 
 AppRegistry.registerComponent('rCal', () => rCal);
